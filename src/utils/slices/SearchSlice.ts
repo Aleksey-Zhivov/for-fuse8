@@ -4,6 +4,7 @@ import { APIResponse, Character, FetchCharactersParams } from '../../api/types';
 
 interface SearchState {
     results: Character[];
+    totalCount: number;
     resultsIsLoading: boolean;
     error: string | null;
     currentPage: number;
@@ -12,6 +13,7 @@ interface SearchState {
 
 const initialState: SearchState = {
     results: [],
+    totalCount: 0,
     resultsIsLoading: false,
     error: null,
     currentPage: 1,
@@ -32,6 +34,11 @@ const searchSlice = createSlice({
     reducers: {
         setPage: (state, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
+        },
+        clearSearch: (state) => {
+            state.results = [];
+            state.totalCount = 0;
+            state.error = null;
         }
     },
     extraReducers: (builder) => {
@@ -43,6 +50,7 @@ const searchSlice = createSlice({
                 state.resultsIsLoading = false;
                 state.results = action.payload.results;
                 state.totalPages = action.payload.info.pages;
+                state.totalCount = action.payload.info.count;
             })
             .addCase(searchCharacters.rejected, (state, action) => {
                 state.resultsIsLoading = false;
@@ -51,5 +59,5 @@ const searchSlice = createSlice({
     },
 });
 
-export const { setPage } = searchSlice.actions;
+export const { setPage, clearSearch } = searchSlice.actions;
 export default searchSlice.reducer;
