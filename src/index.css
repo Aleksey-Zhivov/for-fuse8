@@ -2,19 +2,18 @@
   font-family: 'Fira Sans';
   src: url('../public/fonts/fira-sans-regular.woff2') format('woff2'),
        url('../public/fonts/fira-sans-regular.woff') format('woff');
-  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Fira Sans';
-  src: url('../public/fonts/fira-sans-regular.woff2') format('woff2'),
-       url('../public/fonts/fira-sans-regular.woff') format('woff');
-  font-weight: 700;
+  font-family: 'Montserrat';
+  src: url('../public/fonts/montserrat-regular.woff2') format('woff2'),
+       url('../public/fonts/montserrat-regular.woff') format('woff');
   font-style: normal;
   font-display: swap;
 }
+
 
 * {
   margin: 0;
@@ -23,12 +22,13 @@
 }
 
 body {
-  background-color: #f4f4f4;
+  background-color: #fff;
   font-family: 'Fira Sans', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-inline: auto;
+  max-width: 1920px;
   width: 100vw;
-  min-height: 100vh;
   padding: 20px;
 }

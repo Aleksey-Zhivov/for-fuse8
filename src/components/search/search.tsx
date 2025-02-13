@@ -6,7 +6,7 @@ import { useAppSelector } from '../../utils/store/store';
 
 export const Search: FC<SearchProps> = ({ onSearch }) => {
     const [query, setQuery] = useState('');
-    const charactersCount = useAppSelector((store) => store.search.totalCount);
+    const {resultsIsLoading, totalCount} = useAppSelector((store) => store.search);
     const inputRef = useRef<HTMLInputElement>(null);
     const debouncedQuery = useDebounce(query, 1000);
 
@@ -31,7 +31,11 @@ export const Search: FC<SearchProps> = ({ onSearch }) => {
                         onChange={(e) => setQuery(e.target.value)}
                     />
                 </label>
-                {charactersCount > 0 && <span className='search__results-count'>Found characters: {charactersCount}</span>}
+                {!resultsIsLoading && totalCount > 0 && 
+                    <span className='search__results-count'>
+                        Found characters: {totalCount}
+                    </span>
+                }
             </div>
         </div>
     );

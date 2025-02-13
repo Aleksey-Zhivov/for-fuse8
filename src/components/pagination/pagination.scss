@@ -10,10 +10,10 @@
     &__button {
         padding: 10px 20px;
         border: none;
-        border-radius: 5px;
         font-size: 16px;
+        background-color: transparent;
         cursor: pointer;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 2px 6px 8px 4px rgba(0, 0, 0, 0.1);
 
         &:hover {
             transform: scale(1.05);
@@ -27,6 +27,6 @@
 
     &__info {
         font-size: 16px;
-        font-weight: bold;
+        font-weight: 400;
     }
 }

@@ -32,13 +32,14 @@ const searchSlice = createSlice({
     name: 'search',
     initialState,
     reducers: {
-        setPage: (state, action: PayloadAction<number>) => {
+        setPage: (state, action) => {
             state.currentPage = action.payload;
         },
         clearSearch: (state) => {
             state.results = [];
             state.totalCount = 0;
             state.error = null;
+            state.currentPage = 1;
         }
     },
     extraReducers: (builder) => {
@@ -49,12 +50,14 @@ const searchSlice = createSlice({
             .addCase(searchCharacters.fulfilled, (state, action) => {
                 state.resultsIsLoading = false;
                 state.results = action.payload.results;
-                state.totalPages = action.payload.info.pages;
                 state.totalCount = action.payload.info.count;
+                state.totalPages = action.payload.info.pages;
             })
             .addCase(searchCharacters.rejected, (state, action) => {
                 state.resultsIsLoading = false;
-                state.error = action.error.message || 'Ошибка выполнения запроса персонажей.';
+                state.error = action.error.message || 'Ошибка загрузки';
+                state.results = [];
+                state.totalCount = 0;
             });
     },
 });

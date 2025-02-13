@@ -13,8 +13,8 @@ export const Card: FC<CardProps> = ({ character, isActive, onSelect }) => {
         <div className={isActive ? 'card active' : 'card'} onClick={handleClick}>
             <h2 className="card__title">{character.name} - {character.species}</h2>
             <div className='card__info'>
-                <p className={`card__info-status ${character.status.toLowerCase()}`}>
-                    Status: {character.status}
+                <p className='card__info-status'>
+                    Status: <span className={`card__info-status_text ${character.status.toLowerCase()}`}>{character.status}</span>
                 </p>
                 <p className="card__info-created">
                     Created: {new Date(character.created).toLocaleDateString()}
